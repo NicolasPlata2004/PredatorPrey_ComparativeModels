@@ -1,0 +1,33 @@
+function modelo_chochin_unificado
+    % Crear ventana principal
+    f = figure('Name', 'Simulación Población de Chochines', ...
+               'Position', [300 200 800 600]);
+
+    % Menú desplegable
+    uicontrol(f, 'Style', 'text', 'String', 'Selecciona experimento:', ...
+              'Units', 'normalized', 'Position', [0.1 0.93 0.3 0.04], ...
+              'FontWeight', 'bold');
+    popup = uicontrol(f, 'Style', 'popupmenu', ...
+              'String', {'Bloque 1: Número constante de gatos', ...
+                         'Bloque 2: NL vs LTI (20 gatos)', ...
+                         'Bloque 3: Escalón en z (0 → 1)'}, ...
+              'Units', 'normalized', 'Position', [0.4 0.93 0.45 0.05]);
+
+    % Botón de ejecutar
+    uicontrol(f, 'Style', 'pushbutton', 'String', 'Ejecutar', ...
+              'Units', 'normalized', 'Position', [0.4 0.86 0.2 0.05], ...
+              'FontWeight', 'bold', ...
+              'Callback', @(~,~) ejecutar_experimento(popup.Value));
+end
+
+function ejecutar_experimento(opcion)
+    close all
+    switch opcion
+        case 1
+            veinte_gatos_XvsT;
+        case 2
+            veinte_gatos_nl_vs_lti;
+        case 3
+            llegada_gato;
+    end
+end
